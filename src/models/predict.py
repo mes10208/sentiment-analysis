@@ -1,6 +1,8 @@
 import pickle
 from typing import List
 
+import numpy as np
+
 from src.features.tokenize import tokenize_classes
 
 
@@ -18,8 +20,8 @@ def predict(documents: List[str]):
 
     predictions = []
     for document in document_words:
-        positive_prob = model['POS_PROB']
-        negative_prob = model['NEG_PROB']
+        positive_prob = np.log(model['POS_PROB'])
+        negative_prob = np.log(model['NEG_PROB'])
         for word in document:
             if word in model['COND_POS_PROBS']:
                 positive_prob += model['COND_POS_PROBS'][word]['logprob']
