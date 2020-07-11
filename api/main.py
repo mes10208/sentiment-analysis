@@ -8,7 +8,7 @@ from src.models.predict import predict
 app = FastAPI()
 
 
-@app.get('/')
+@app.get('/helloworld')
 async def test():
     return {'return':'hello wolrd'}
 
